@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Pflanzen-Bibliothek</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Spezifische Ergänzungen für die Startseite */
+        .plant-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Eine Spalte für Handys */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .plant-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid #2e7d32;
+            transition: transform 0.2s;
+        }
+        .plant-card:active {
+            transform: scale(0.98); /* Kleiner Klick-Effekt am Handy */
+            background-color: #f1f8e9;
+        }
+        .emoji { font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Meine Samen</h1>
+        <p>Scanne den QR-Code auf der Tüte für die Anleitung.</p>
+
+        <div class="plant-grid">
+            <a href="tomate.html" class="plant-card">
+                <span><strong>Ochsenherztomate</strong></span>
+                <span class="emoji">🍅</span>
+            </a>
+
+            <a href="basilikum.html" class="plant-card">
+                <span><strong>Genoveser Basilikum</strong></span>
+                <span class="emoji">🌿</span>
+            </a>
+
+            <a href="chili.html" class="plant-card">
+                <span><strong>Habanero Chili</strong></span>
+                <span class="emoji">🌶️</span>
+            </a>
+            </div>
+
+        <footer style="margin-top: 40px; font-size: 0.8em; color: #888; text-align: center;">
+            Gehostet via GitHub Pages • 2026
+        </footer>
+    </div>
+</body>
+</html>
