@@ -13,7 +13,7 @@
             <p>Lade Pflanzenliste...</p>
         </div>
     </div>
-
+<script>
         async function loadPlants() {
         try {
             const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/`);
@@ -44,6 +44,6 @@
             console.error("Fehler beim Laden:", error);
         }
     }
-
+</script>
 </body>
 </html>
