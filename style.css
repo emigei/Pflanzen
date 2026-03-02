@@ -6,57 +6,57 @@
     --shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
+/* Verhindert horizontales Scrollen auf allen Geräten */
+* { 
+    box-sizing: border-box; 
+}
+
 body {
-    font-family: -apple-system, sans-serif;
-    background-color: #f9fdf9;
+    font-family: -apple-system, system-ui, sans-serif;
+    background-color: #f4f7f4;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     justify-content: center;
+    line-height: 1.6;
+    color: var(--text-color);
 }
 
 .container {
-    max-width: 900px;
     width: 100%;
+    max-width: 600px; /* Begrenzt die Breite für bessere Lesbarkeit */
 }
 
-h1 {
-    text-align: center;
-    color: var(--primary-green);
-}
+/* --- STYLING FÜR DEINE UNTERSEITEN (STANDARD) --- */
+/* Da deine Unterseiten nur <h1>, <p>, <ul> etc. haben, stylen wir diese direkt */
+h1 { color: var(--primary-green); margin-top: 0; }
+ul { padding-left: 20px; }
+li { margin-bottom: 10px; }
 
-/* Das Alphabetische Gitter */
-.plant-grid {
+/* Falls du den "Zurück"-Link am Ende hast */
+a { color: var(--primary-green); font-weight: bold; text-decoration: none; }
+
+/* --- SPEZIAL-STYLING NUR FÜR DIE STARTSEITE --- */
+.index-page .plant-grid {
     display: grid;
-    /* Erzeugt so viele Spalten wie Platz ist, mind. 140px breit */
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.plant-card {
+.index-page .plant-card {
     background: var(--white);
     border-radius: 12px;
     padding: 15px;
-    text-decoration: none;
-    color: var(--text-color);
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: transform 0.2s;
     border-bottom: 3px solid var(--primary-green);
 }
 
-.plant-card:active { transform: scale(0.95); }
-
-.plant-card .emoji {
+.index-page .emoji {
     font-size: 2rem;
-    margin-bottom: 8px;
-}
-
-.plant-card strong {
-    font-size: 0.9rem;
-    display: block;
+    margin-bottom: 5px;
 }
