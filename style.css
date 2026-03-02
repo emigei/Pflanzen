@@ -1,62 +1,74 @@
-:root {
-    --primary-green: #2e7d32;
-    --light-bg: #f1f8e9;
-    --white: #ffffff;
-    --text-color: #333;
-    --shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* Verhindert horizontales Scrollen auf allen Geräten */
+/* 1. Radikaler Reset für alle Seiten */
 * { 
     box-sizing: border-box; 
 }
 
-body {
-    font-family: -apple-system, system-ui, sans-serif;
-    background-color: #f4f7f4;
+html, body {
     margin: 0;
-    padding: 15px;
+    padding: 0;
+    width: 100%;
+    /* Verhindert das "Wackeln" und Seitwärtsscrollen */
+    overflow-x: hidden; 
+    font-family: -apple-system, sans-serif;
+    background-color: #f4f7f4;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* 2. Styling für die UNTERSEITEN (Deine zig Dateien) */
+/* Da diese keinen Container haben, geben wir dem Body selbst ein Padding */
+body {
+    padding: 20px;
+}
+
+h1 { color: #2e7d32; font-size: 1.6rem; margin-top: 10px; }
+h2 { color: #388e3c; font-size: 1.3rem; margin-top: 20px; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; }
+h3 { font-size: 1.1rem; margin-top: 15px; }
+
+ul, ol {
+    padding-left: 25px; /* Genug Platz für die Punkte, aber nicht zu viel */
+    margin: 10px 0;
+}
+
+li { margin-bottom: 8px; }
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 25px 0;
+    width: 100%; /* Bleibt garantiert im Sichtfeld */
+}
+
+p { margin-bottom: 15px; }
+
+/* 3. SPEZIAL-STYLING NUR FÜR DIE STARTSEITE (INDEX) */
+/* Wir nutzen den Selektor 'body:has(#plant-grid)', damit das Gitter NUR auf der Index erscheint */
+body:has(#plant-grid) {
     display: flex;
     justify-content: center;
-    line-height: 1.6;
-    color: var(--text-color);
 }
 
-.container {
-    width: 100%;
-    max-width: 600px; /* Begrenzt die Breite für bessere Lesbarkeit */
-}
-
-/* --- STYLING FÜR DEINE UNTERSEITEN (STANDARD) --- */
-/* Da deine Unterseiten nur <h1>, <p>, <ul> etc. haben, stylen wir diese direkt */
-h1 { color: var(--primary-green); margin-top: 0; }
-ul { padding-left: 20px; }
-li { margin-bottom: 10px; }
-
-/* Falls du den "Zurück"-Link am Ende hast */
-a { color: var(--primary-green); font-weight: bold; text-decoration: none; }
-
-/* --- SPEZIAL-STYLING NUR FÜR DIE STARTSEITE --- */
-.index-page .plant-grid {
+#plant-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 12px;
+    width: 100%;
+    max-width: 600px; /* Die Startseite bleibt kompakt */
     margin-top: 20px;
 }
 
-.index-page .plant-card {
-    background: var(--white);
+.plant-card {
+    background: #ffffff;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border-bottom: 3px solid var(--primary-green);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-bottom: 3px solid #2e7d32;
 }
 
-.index-page .emoji {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
+.emoji { font-size: 2rem; margin-bottom: 5px; }
