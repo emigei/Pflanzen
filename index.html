@@ -23,17 +23,73 @@
     const username = 'emigei';
     const repo = 'pflanzen';
 
+    // HIER TRÄGST DU DIE MONATE EIN
+    // Schlüssel ist ein Teil des Dateinamens, Wert sind die Suchbegriffe
+   const plantDatabase = {
+    "asia_spicy_greens": "märz april mai september oktober",
+    "basilikum": "märz april mai juni",
+    "bohnenkraut": "april mai juni",
+    "brokkoli": "märz april mai juni",
+    "buschbohnen": "mai juni juli",
+    "cayenne_chili": "januar februar märz",
+    "cherrytomate": "märz april",
+    "feldsalat": "juli august september oktober",
+    "gartenkresse": "märz april mai juni juli august september",
+    "glockenpaprika": "januar februar märz",
+    "grünkohl": "mai juni juli",
+    "hokkaido": "april mai juni",
+    "jalapeno": "januar februar märz",
+    "kapuzinerkresse": "april mai juni",
+    "knoblauchgras": "märz april mai",
+    "kopfsalat": "februar märz april mai juni juli august",
+    "koriander": "april mai juni",
+    "kornblume": "märz april mai september",
+    "majoran": "märz april mai",
+    "mohn": "märz april september oktober",
+    "monatserdbeeren": "februar märz april",
+    "oregano": "märz april mai",
+    "pak choi": "april mai juli august",
+    "palmkohl": "mai juni juli",
+    "petersilie": "märz april mai juni juli",
+    "pflücksalat": "februar märz april mai juni juli august",
+    "radieschen": "märz april mai juni juli august september",
+    "ringelblume": "märz april mai juni",
+    "rosmarin": "märz april mai",
+    "rucola": "märz april mai juni juli august september",
+    "römersalat": "februar märz april mai juni juli",
+    "salatgurke": "april mai juni",
+    "salbei": "märz april mai",
+    "schnittsalat": "februar märz april mai juni juli august",
+    "schwammgurke": "märz april",
+    "spaghettikürbis": "april mai juni",
+    "spinat": "märz april august september",
+    "szechuan": "märz april mai",
+    "thai-basilikum": "märz april mai juni",
+    "thymian": "märz april mai",
+    "zinnien": "märz april mai",
+    "zitronengras": "februar märz april",
+    "zitronenmelisse": "märz april mai",
+    "zuckererbse": "märz april mai juni",
+    "zwergsonnenblume": "april mai juni",
+    "edamame": "april mai juni",
+    "dill": "märz april mai juni juli",
+    "mangold": "april mai juni juli",
+    "möhren": "märz april mai juni juli",
+    "popcornmais": "april mai juni",
+    "rote-beete": "april mai juni juli",
+    "studentenblume": "märz april mai",
+    "tabak": "märz april",
+    "tomate": "märz april"
+};
+
     function getEmoji(name) {
         const n = name.toLowerCase();
         if (n.includes('tomate')) return '🍅';
         if (n.includes('chili') || n.includes('peperoni')) return '🌶️';
         if (n.includes('salat')) return '🥬';
+        if (n.includes('kresse')) return '🌿';
         if (n.includes('gurke')) return '🥒';
-        if (n.includes('basilikum') || n.includes('kräuter')) return '🌿';
-        if (n.includes('blume') || n.includes('zinnien') || n.includes('rose')) return '🌸';
-        if (n.includes('karotte') || n.includes('möhre')) return '🥕';
-        if (n.includes('kürbis')) return '🎃';
-        if (n.includes('kohl')) return '🥬';
+        if (n.includes('möhre') || n.includes('karotte')) return '🥕';
         return '🌱';
     }
 
@@ -49,17 +105,26 @@
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             plantFiles.forEach(file => {
+                const fileNameLow = file.name.toLowerCase();
                 const rawName = file.name.replace('.html', '').replace(/-/g, ' ').replace(/_/g, ' ');
                 const displayName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
-                const emoji = getEmoji(file.name);
                 
+                // Wir suchen die Monate aus unserer Datenbank oben
+                let monate = "";
+                for (let key in plantDatabase) {
+                    if (fileNameLow.includes(key)) {
+                        monate = plantDatabase[key];
+                    }
+                }
+
                 const card = document.createElement('a');
                 card.href = file.name;
                 card.className = 'plant-card';
-                // Wir speichern den Namen für die Suche in einem Attribut
-                card.setAttribute('data-name', rawName.toLowerCase());
+                // Die Karte merkt sich jetzt Namen UND Monate für die Suche
+                card.setAttribute('data-search', (rawName + " " + monate).toLowerCase());
+                
                 card.innerHTML = `
-                    <span class="emoji">${emoji}</span>
+                    <span class="emoji">${getEmoji(file.name)}</span>
                     <span><strong>${displayName}</strong></span>
                 `;
                 grid.appendChild(card);
@@ -69,15 +134,13 @@
         }
     }
 
-    // Die Filter-Funktion
     function filterPlants() {
         const input = document.getElementById('searchInput').value.toLowerCase();
         const cards = document.getElementsByClassName('plant-card');
 
         Array.from(cards).forEach(card => {
-            const name = card.getAttribute('data-name');
-            // Wenn der Suchbegriff im Namen vorkommt, anzeigen, sonst verstecken
-            if (name.includes(input)) {
+            const searchTerms = card.getAttribute('data-search');
+            if (searchTerms.includes(input)) {
                 card.style.display = "flex";
             } else {
                 card.style.display = "none";
