@@ -37,7 +37,7 @@ h1 {
 }
 .search-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto 20px auto;
     padding: 0 10px;
 }
@@ -114,7 +114,7 @@ body:has(#plant-grid) h1 {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
     gap: 12px;
     width: 100%;
-    max-width: 600px; /* Begrenzt die Breite auf großen Bildschirmen */
+    max-width: 450px; /* Begrenzt die Breite auf großen Bildschirmen */
 }
 
 .plant-card {
