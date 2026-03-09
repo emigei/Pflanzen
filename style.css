@@ -151,7 +151,7 @@ body:has(#plant-grid) h1 {
 }
 
 /* Tablet & Desktop Optimierung */
-@media (min-width: 600px) {
+@media (min-width: 400px) {
     #plant-grid {
         gap: 20px;
     }
